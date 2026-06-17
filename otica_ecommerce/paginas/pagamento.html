@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento - Ótica</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .checkout-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        .valor-total { font-size: 24px; color: #27ae60; font-weight: bold; margin: 20px 0; }
+        .metodo { text-align: left; margin-bottom: 20px; }
+        .metodo label { display: block; margin: 10px 0; font-size: 16px; cursor: pointer; }
+        .btn-pagar { background: #27ae60; color: white; border: none; padding: 12px; width: 100%; border-radius: 4px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .btn-pagar:hover { background: #219653; }
+        .voltar { display: block; margin-top: 15px; color: #7f8c8d; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h2>Efetuar Pagamento</h2>
+        <p>Olá, {{ usuario }}! O total da sua compra é:</p>
+        <div class="valor-total">R$ {{ "%.2f"|format(total) }}</div>
+        
+        <form action="/pagamento" method="POST">
+            <div class="metodo">
+                <p><b>Selecione a forma de pagamento:</b></p>
+                <label><input type="radio" name="forma" value="pix" checked> 📱 Pix (Aprovação Imediata)</label>
+                <label><input type="radio" name="forma" value="cartao"> 💳 Cartão de Crédito</label>
+                <label><input type="radio" name="forma" value="boleto"> 📄 Boleto Bancário</label>
+            </div>
+            <button type="submit" class="btn-pagar">Confirmar e Finalizar</button>
+        </form>
+        <a href="/carrinho" class="voltar">Voltar ao Carrinho</a>
+    </div>
+</body>
+</html>

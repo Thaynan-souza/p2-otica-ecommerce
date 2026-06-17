@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ótica E-commerce</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        .vitrine { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .produto-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; width: 250px; text-align: center; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
+        .preco { color: #27ae60; font-size: 20px; font-weight: bold; margin: 10px 0; }
+        .estoque { color: #7f8c8d; font-size: 14px; }
+        .btn-comprar { background: #2980b9; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 10px; font-size: 16px; }
+        .btn-comprar:hover { background: #3498db; }
+        .menu { text-align: right; margin-bottom: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 1px 1px 5px rgba(0,0,0,0.1);}
+        .menu a { text-decoration: none; color: #2980b9; font-weight: bold; margin-left: 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        {% if usuario %}
+            <span>Olá, <b>{{ usuario }}</b>!</span>
+            <a href="/historico">Minhas Compras</a>
+            <a href="/carrinho">Meu Carrinho ({{ qtd_carrinho }})</a>
+            <a href="/logout" style="color: #e74c3c;">Sair</a>
+        {% else %}
+            <a href="/login">Fazer Login</a>
+            <a href="/login">Meu Carrinho (0)</a>
+        {% endif %}
+    </div>
+
+    <h1>Ótica Visão Clara</h1>
+
+    <div class="vitrine">
+        {% for p in produtos %}
+        <div class="produto-card">
+            <h3>{{ p.nome }}</h3>
+            <p class="preco">R$ {{ "%.2f"|format(p.preco) }}</p>
+            <p class="estoque">Estoque: {{ p.estoque }} unidades</p>
+            
+            <form action="/adicionar" method="POST">
+                <input type="hidden" name="id_produto" value="{{ p.cod_produto }}">
+                <button type="submit" class="btn-comprar">Adicionar ao Carrinho</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
