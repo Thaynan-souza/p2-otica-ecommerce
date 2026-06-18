@@ -52,3 +52,28 @@ CREATE TABLE pedido (
 
 USE otica_bd;
 ALTER TABLE carrinho ADD COLUMN quantidade INT NOT NULL DEFAULT 1;
+
+USE otica_bd;
+
+-- 1. Cria a coluna 'imagem' e define uma imagem padrão (placeholder) caso o produto não tenha foto
+ALTER TABLE produto ADD COLUMN imagem VARCHAR(500) DEFAULT 'https://via.placeholder.com/250x150?text=Sem+Imagem';
+
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 1;
+
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 2;
+
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1582142407894-ec85a1260a46?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 3;
+
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1550537687-c91072c4792d?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 4; -- Lentes de Contato
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1509695507497-903c140c43b0?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 5; -- Armani Exchange
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 6; -- Carrera Vintage
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 7; -- Armação Infantil
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 8; -- Spray Limpa Lentes
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1625591340236-41ec9cd2e238?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 9; -- Prada Elegance
+UPDATE produto SET imagem = 'https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=250&q=80' WHERE cod_produto = 10; -- Titanium Ultra Leve
+
+USE otica_bd;
+
+UPDATE produto 
+SET imagem = 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=250&q=80' 
+WHERE cod_produto = 9;
