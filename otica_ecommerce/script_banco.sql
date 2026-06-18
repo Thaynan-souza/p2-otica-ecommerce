@@ -77,3 +77,7 @@ USE otica_bd;
 UPDATE produto 
 SET imagem = 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=250&q=80' 
 WHERE cod_produto = 9;
+
+USE otica_bd;
+
+ALTER TABLE usuario MODIFY COLUMN senha VARCHAR(255) NOT NULL;

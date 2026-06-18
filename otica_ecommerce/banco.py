@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
+import bcrypt
 
 def conectar_banco():
     try:
@@ -7,6 +8,18 @@ def conectar_banco():
         if conexao.is_connected(): return conexao
     except Error as e: print(f"Erro: {e}")
     return None
+
+def gerar_hash_senha(senha_pura: str) -> str:
+    senha_bytes = senha_pura.encode('utf-8')
+    salt = bcrypt.gensalt()
+    hash_bytes = bcrypt.hashpw(senha_bytes, salt)
+    return hash_bytes.decode('utf-8')
+
+def verificar_senha_hash(senha_digitada: str, hash_banco: str) -> bool:
+    senha_bytes = senha_digitada.encode('utf-8')
+    hash_bytes = hash_banco.encode('utf-8')
+    return bcrypt.checkpw(senha_bytes, hash_bytes)
+
 
 def consultar_produtos():
     conexao = conectar_banco()
@@ -22,8 +35,9 @@ def cadastrar_usuario(nome, senha):
     conexao = conectar_banco()
     if conexao:
         try:
+            senha_hash = gerar_hash_senha(senha)
             cursor = conexao.cursor()
-            cursor.execute("INSERT INTO usuario (nome, senha) VALUES (%s, %s)", (nome, senha))
+            cursor.execute("INSERT INTO usuario (nome, senha) VALUES (%s, %s)", (nome, senha_hash))
             conexao.commit()
             return True
         except: return False
@@ -35,12 +49,12 @@ def verificar_login(nome, senha):
     if conexao:
         try:
             cursor = conexao.cursor(dictionary=True)
-            cursor.execute("SELECT * FROM usuario WHERE nome = %s AND senha = %s", (nome, senha))
-            return cursor.fetchone()
+            cursor.execute("SELECT * FROM usuario WHERE nome = %s", (nome,))
+            usuario = cursor.fetchone()
+            if usuario and verificar_senha_hash(senha, usuario['senha']):
+                return usuario
         finally: cursor.close(); conexao.close()
     return None
-
-# --- NOVAS FUNÇÕES DO CARRINHO E STOCK ---
 
 def adicionar_ao_carrinho(usuario, cod_produto):
     conexao = conectar_banco()
@@ -123,7 +137,6 @@ def finalizar_compra(usuario):
                 nome_formatado = f"{item['quantidade']}x {item['nome']}"
                 cursor_inserir.execute("INSERT INTO pedido (usuario, nome_produto, preco) VALUES (%s, %s, %s)", (usuario, nome_formatado, preco_total_item))
                 
-                # REQUISITO DA PROVA: DAR BAIXA NO STOCK
                 cursor_inserir.execute("UPDATE produto SET estoque = estoque - %s WHERE cod_produto = %s", (item['quantidade'], item['cod_produto']))
                 
             cursor_inserir.execute("DELETE FROM carrinho WHERE usuario = %s", (usuario,))

@@ -1,0 +1,102 @@
+/* --- ESTILOS GERAIS --- */
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f4f4f9; 
+    margin: 0; 
+}
+
+/* Usado na Vitrine, Carrinho e Histórico */
+.body-padrao {
+    padding: 20px;
+}
+
+/* Usado no Login e Pagamento para centrar o cartão no meio da tela */
+.body-centralizado {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh;
+}
+
+h1, h2, h3 { color: #333; }
+a { text-decoration: none; }
+
+/* --- BOTÕES --- */
+.btn { border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; color: white; display: inline-block; text-align: center; }
+.btn-comprar { background: #2980b9; width: 100%; margin-top: 10px; font-size: 16px; }
+.btn-comprar:hover { background: #3498db; }
+.btn-sucesso { background: #27ae60; }
+.btn-sucesso:hover { background: #219653; }
+.btn-voltar { background: #7f8c8d; }
+.btn-perigo { background: #e74c3c; margin-top: 10px; }
+.btn-pequeno { padding: 5px 10px; border: none; cursor: pointer; border-radius: 3px; font-weight: bold; }
+
+/* --- VITRINE PRINCIPAL --- */
+.menu { text-align: right; margin-bottom: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 1px 1px 5px rgba(0,0,0,0.1);}
+.menu a { color: #2980b9; font-weight: bold; margin-left: 15px; }
+.vitrine { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.produto-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; width: 250px; text-align: center; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
+.produto-img { width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+.preco { color: #27ae60; font-size: 20px; font-weight: bold; margin: 10px 0; }
+.estoque { color: #7f8c8d; font-size: 14px; }
+
+/* --- CARRINHO E HISTÓRICO --- */
+.container-largo { background: white; padding: 20px; border-radius: 8px; max-width: 800px; margin: 0 auto; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
+table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+.total { font-size: 20px; font-weight: bold; text-align: right; color: #27ae60; margin-bottom: 20px;}
+.item-pedido { padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.item-pedido:last-child { border-bottom: none; }
+.data { color: #95a5a6; font-size: 13px; }
+
+/* --- LOGIN E PAGAMENTO (Caixas Centrais) --- */
+.caixa-central { background: white; padding: 30px; border-radius: 8px; box-shadow: 2px 2px 12px rgba(0,0,0,0.1); width: 320px; text-align: center; }
+.input-group { margin-bottom: 15px; text-align: left; }
+.input-group label { display: block; color: #666; margin-bottom: 5px; font-size: 14px; }
+.input-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
+.mensagem { padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 14px; }
+.erro { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.sucesso { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.link-voltar { display: block; margin-top: 15px; color: #7f8c8d; font-size: 14px; }
+.link-voltar:hover { text-decoration: underline; }
+
+/* Simulação de Cartão */
+#dados-cartao { display: none; background: #ecf0f1; padding: 15px; border-radius: 5px; margin-bottom: 15px; text-align: left;}
+#dados-cartao input { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+/* --- PAGAMENTO --- */
+.preco-destaque { 
+    font-size: 24px; 
+    margin-bottom: 20px; 
+    color: #27ae60; 
+    font-weight: bold; 
+}
+
+.forma-pagamento { 
+    text-align: left; 
+    margin-bottom: 20px; 
+}
+
+.forma-pagamento p { 
+    margin-bottom: 15px; 
+    color: #333; 
+}
+
+.opcao-radio { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 12px; 
+    cursor: pointer; 
+    color: #555; 
+}
+
+.opcao-radio input[type="radio"] { 
+    width: auto; 
+}
+
+.btn-finalizar { 
+    width: 100%; 
+    font-size: 18px; 
+    padding: 15px; 
+}
