@@ -28,9 +28,31 @@ O sistema permite o cadastro de usuários com criptografia de senhas, navegaçã
 
 ## ⚙️ Pré-requisitos e Instalação
 
+Para rodar este projeto em ambiente de desenvolvimento CODESPACE, siga as instruções abaixo:
+
+1. Verifique se o Banco de Dados está rodando
+O Codespaces não inicia o MySQL/MariaDB automaticamente a cada abertura.
+
+No terminal do VS Code, digite:
+
+Bash
+sudo service mariadb start
+Se aparecer uma mensagem confirmando que o serviço iniciou, estamos prontos.
+
+2. Certifique-se de que as dependências estão instaladas
+Como o Codespaces pode recriar o ambiente, é bom garantir que as bibliotecas necessárias estão lá:
+
+Bash
+pip install fastapi uvicorn jinja2 mysql-connector-python bcrypt python-multipart
+3. Suba o servidor
+Agora, basta rodar o comando que já conhece:
+
+Bash
+python -m uvicorn main:app --reload
+
 Para rodar este projeto na sua máquina local ou ambiente de desenvolvimento, siga as instruções abaixo:
 
-### 1. Clonar o repositório
+### Clonar o repositório
 ```bash
 git clone [https://github.com/SeuUsuario/p2-otica-ecommerce.git](https://github.com/SeuUsuario/p2-otica-ecommerce.git)
 cd p2-otica-ecommerce/otica_ecommerce
