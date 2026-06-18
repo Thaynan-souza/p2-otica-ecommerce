@@ -3,20 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Meu Carrinho</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
-        .container { background: white; padding: 20px; border-radius: 8px; max-width: 800px; margin: 0 auto; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        .total { font-size: 20px; font-weight: bold; text-align: right; color: #27ae60; margin-bottom: 20px;}
-        .btn { background: #27ae60; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; font-weight: bold;}
-        .btn-voltar { background: #7f8c8d; }
-        .btn-perigo { background: #e74c3c; margin-top: 10px;}
-        .btn-pequeno { padding: 5px 10px; border: none; cursor: pointer; border-radius: 3px; font-weight: bold;}
-    </style>
+    <link rel="stylesheet" href="/static/carrinho.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container-largo">
         <h2>Carrinho de Compras - {{ usuario }}</h2>
         
         {% if itens %}
@@ -35,13 +25,13 @@
                         <td>{{ item.nome }}</td>
                         <td>R$ {{ "%.2f"|format(item.preco) }}</td>
                         <td>
-                            <form action="/carrinho/atualizar" method="POST" style="display:inline;">
+                            <form action="/carrinho/atualizar" method="POST" class="form-inline">
                                 <input type="hidden" name="id_item" value="{{ item.id_item }}">
                                 <input type="hidden" name="acao" value="diminuir">
                                 <button class="btn-pequeno" type="submit">-</button>
                             </form>
                             <b> {{ item.quantidade }} </b>
-                            <form action="/carrinho/atualizar" method="POST" style="display:inline;">
+                            <form action="/carrinho/atualizar" method="POST" class="form-inline">
                                 <input type="hidden" name="id_item" value="{{ item.id_item }}">
                                 <input type="hidden" name="acao" value="aumentar">
                                 <button class="btn-pequeno" type="submit">+</button>
@@ -50,7 +40,7 @@
                         <td>
                             <form action="/carrinho/remover" method="POST">
                                 <input type="hidden" name="id_item" value="{{ item.id_item }}">
-                                <button class="btn-pequeno btn-perigo" style="color: white; margin: 0;" type="submit">Remover</button>
+                                <button class="btn-pequeno btn-perigo" type="submit">Remover</button>
                             </form>
                         </td>
                     </tr>
@@ -60,13 +50,13 @@
             
             <div class="total">Total do Pedido: R$ {{ "%.2f"|format(total) }}</div>
             
-            <div style="display: flex; justify-content: space-between;">
+            <div class="acoes-carrinho">
                 <form action="/carrinho/esvaziar" method="POST">
                     <button class="btn btn-perigo" type="submit">Esvaziar Carrinho</button>
                 </form>
-                <div>
+                <div class="acoes-carrinho-botoes">
                     <a href="/" class="btn btn-voltar">Continuar Comprando</a>
-                    <a href="/pagamento" class="btn">Ir para Pagamento</a>
+                    <a href="/pagamento" class="btn btn-sucesso">Ir para Pagamento</a>
                 </div>
             </div>
         {% else %}

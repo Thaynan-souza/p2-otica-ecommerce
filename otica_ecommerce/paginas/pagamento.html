@@ -3,47 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Pagamento - Ótica</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .checkout-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); width: 350px; text-align: center; }
-        .valor-total { font-size: 24px; color: #27ae60; font-weight: bold; margin: 20px 0; }
-        .metodo { text-align: left; margin-bottom: 20px; }
-        .metodo label { display: block; margin: 10px 0; font-size: 16px; cursor: pointer; }
-        .btn-pagar { background: #27ae60; color: white; border: none; padding: 12px; width: 100%; border-radius: 4px; font-size: 18px; font-weight: bold; cursor: pointer; }
-        .voltar { display: block; margin-top: 15px; color: #7f8c8d; text-decoration: none; }
-        
-        /* Campos fictícios do cartão */
-        #dados-cartao { display: none; background: #ecf0f1; padding: 15px; border-radius: 5px; margin-bottom: 15px; text-align: left;}
-        #dados-cartao input { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-    </style>
+    <link rel="stylesheet" href="/static/pagamento.css">
 </head>
 <body>
-    <div class="checkout-container">
+    <div class="caixa-central">
         <h2>Efetuar Pagamento</h2>
-        <div class="valor-total">R$ {{ "%.2f"|format(total) }}</div>
+        <div class="preco-destaque">R$ {{ "%.2f"|format(total) }}</div>
         
         <form action="/pagamento" method="POST">
-            <div class="metodo">
-                <p><b>Selecione a forma de pagamento:</b></p>
-                <label><input type="radio" name="forma" value="pix" onclick="mostrarCartao(false)" checked> 📱 Pix</label>
-                <label><input type="radio" name="forma" value="boleto" onclick="mostrarCartao(false)"> 📄 Boleto Bancário</label>
-                <label><input type="radio" name="forma" value="cartao" onclick="mostrarCartao(true)"> 💳 Cartão de Crédito</label>
+            
+            <div class="forma-pagamento">
+                <p>Selecione a forma de pagamento:</p>
+                
+                <label class="opcao-radio">
+                    <input type="radio" name="forma" value="pix" onclick="mostrarCartao(false)" checked> 📱 Pix
+                </label>
+                
+                <label class="opcao-radio">
+                    <input type="radio" name="forma" value="boleto" onclick="mostrarCartao(false)"> 📄 Boleto Bancário
+                </label>
+                
+                <label class="opcao-radio">
+                    <input type="radio" name="forma" value="cartao" onclick="mostrarCartao(true)"> 💳 Cartão de Crédito
+                </label>
             </div>
 
-            <div id="dados-cartao">
+            <div id="dados-cartao" class="input-group">
                 <label>Número do Cartão:</label>
                 <input type="text" placeholder="0000 0000 0000 0000">
                 <label>Nome no Cartão:</label>
-                <input type="text" placeholder="JOAO M SILVA">
-                <div style="display: flex; gap: 10px;">
-                    <div style="flex: 1;"><label>Validade:</label><input type="text" placeholder="MM/AA"></div>
-                    <div style="flex: 1;"><label>CVV:</label><input type="text" placeholder="123"></div>
+                <input type="text" placeholder="JOÃO M SILVA">
+                
+                <div class="linha-dupla">
+                    <div class="campo-metade">
+                        <label>Validade:</label>
+                        <input type="text" placeholder="MM/AA">
+                    </div>
+                    <div class="campo-metade">
+                        <label>CVV:</label>
+                        <input type="text" placeholder="123">
+                    </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn-pagar">Confirmar e Finalizar</button>
+            <button type="submit" class="btn-finalizar">Confirmar e Finalizar</button>
         </form>
-        <a href="/carrinho" class="voltar">Voltar ao Carrinho</a>
+        <a href="/carrinho" class="link-voltar">Voltar ao Carrinho</a>
     </div>
 
     <script>

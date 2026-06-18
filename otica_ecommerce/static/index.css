@@ -1,0 +1,12 @@
+body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; }
+h1 { text-align: center; color: #333; }
+.menu { text-align: right; margin-bottom: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 1px 1px 5px rgba(0,0,0,0.1); }
+.menu a { text-decoration: none; color: #2980b9; font-weight: bold; margin-left: 15px; }
+.menu .link-sair { color: #e74c3c; }
+.vitrine { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.produto-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; width: 250px; text-align: center; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
+.produto-img { width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+.preco { color: #27ae60; font-size: 20px; font-weight: bold; margin: 10px 0; }
+.estoque { color: #7f8c8d; font-size: 14px; }
+.btn-comprar { background: #2980b9; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 10px; font-size: 16px; font-weight: bold; }
+.btn-comprar:hover { background: #3498db; }

@@ -1,0 +1,20 @@
+body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+.caixa-central { background: white; padding: 30px; border-radius: 8px; box-shadow: 2px 2px 12px rgba(0,0,0,0.1); width: 320px; text-align: center; }
+h2 { color: #333; margin-top: 0; margin-bottom: 10px; }
+.preco-destaque { font-size: 24px; margin-bottom: 20px; color: #27ae60; font-weight: bold; }
+.forma-pagamento { text-align: left; margin-bottom: 20px; }
+.forma-pagamento p { margin-bottom: 15px; color: #333; font-weight: bold; }
+.opcao-radio { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; cursor: pointer; color: #555; }
+.opcao-radio input[type="radio"] { width: auto; }
+.opcao-radio:last-child { margin-bottom: 20px; }
+.input-group { text-align: left; }
+.input-group label { display: block; color: #666; margin-bottom: 5px; font-size: 14px; }
+.input-group input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 16px; margin-bottom: 15px; }
+#dados-cartao { display: none; background: #ecf0f1; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+.linha-dupla { display: flex; gap: 10px; }
+.campo-metade { flex: 1; }
+.campo-metade input[type="text"] { margin-bottom: 0; }
+.btn-finalizar { background: #27ae60; color: white; width: 100%; font-size: 18px; padding: 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-finalizar:hover { background: #219653; }
+.link-voltar { display: block; margin-top: 15px; color: #7f8c8d; text-decoration: none; font-size: 14px; }
+.link-voltar:hover { text-decoration: underline; }

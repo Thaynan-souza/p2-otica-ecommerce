@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request, Form, responses, Cookie
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 from typing import Optional
 
@@ -10,6 +11,7 @@ from banco import (
 )
 
 app = FastAPI(title="Ótica E-commerce")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 paginas = Jinja2Templates(directory="paginas")
 
 @app.get("/")
