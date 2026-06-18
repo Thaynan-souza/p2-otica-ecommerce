@@ -9,8 +9,10 @@
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
         .total { font-size: 20px; font-weight: bold; text-align: right; color: #27ae60; margin-bottom: 20px;}
-        .btn { background: #27ae60; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;}
+        .btn { background: #27ae60; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; font-weight: bold;}
         .btn-voltar { background: #7f8c8d; }
+        .btn-perigo { background: #e74c3c; margin-top: 10px;}
+        .btn-pequeno { padding: 5px 10px; border: none; cursor: pointer; border-radius: 3px; font-weight: bold;}
     </style>
 </head>
 <body>
@@ -23,6 +25,8 @@
                     <tr>
                         <th>Produto</th>
                         <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +34,25 @@
                     <tr>
                         <td>{{ item.nome }}</td>
                         <td>R$ {{ "%.2f"|format(item.preco) }}</td>
+                        <td>
+                            <form action="/carrinho/atualizar" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_item" value="{{ item.id_item }}">
+                                <input type="hidden" name="acao" value="diminuir">
+                                <button class="btn-pequeno" type="submit">-</button>
+                            </form>
+                            <b> {{ item.quantidade }} </b>
+                            <form action="/carrinho/atualizar" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_item" value="{{ item.id_item }}">
+                                <input type="hidden" name="acao" value="aumentar">
+                                <button class="btn-pequeno" type="submit">+</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/carrinho/remover" method="POST">
+                                <input type="hidden" name="id_item" value="{{ item.id_item }}">
+                                <button class="btn-pequeno btn-perigo" style="color: white; margin: 0;" type="submit">Remover</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -37,12 +60,17 @@
             
             <div class="total">Total do Pedido: R$ {{ "%.2f"|format(total) }}</div>
             
-            <div style="text-align: right;">
-                <a href="/" class="btn btn-voltar">Continuar Comprando</a>
-                <a href="/pagamento" class="btn">Ir para Pagamento</a>
+            <div style="display: flex; justify-content: space-between;">
+                <form action="/carrinho/esvaziar" method="POST">
+                    <button class="btn btn-perigo" type="submit">Esvaziar Carrinho</button>
+                </form>
+                <div>
+                    <a href="/" class="btn btn-voltar">Continuar Comprando</a>
+                    <a href="/pagamento" class="btn">Ir para Pagamento</a>
+                </div>
             </div>
         {% else %}
-            <p>Seu carrinho está vazio. Volte para a vitrine para escolher seus óculos!</p>
+            <p>Seu carrinho está vazio.</p>
             <a href="/" class="btn btn-voltar">Voltar para a Loja</a>
         {% endif %}
     </div>

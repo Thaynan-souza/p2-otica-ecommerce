@@ -10,26 +10,46 @@
         .metodo { text-align: left; margin-bottom: 20px; }
         .metodo label { display: block; margin: 10px 0; font-size: 16px; cursor: pointer; }
         .btn-pagar { background: #27ae60; color: white; border: none; padding: 12px; width: 100%; border-radius: 4px; font-size: 18px; font-weight: bold; cursor: pointer; }
-        .btn-pagar:hover { background: #219653; }
         .voltar { display: block; margin-top: 15px; color: #7f8c8d; text-decoration: none; }
+        
+        /* Campos fictícios do cartão */
+        #dados-cartao { display: none; background: #ecf0f1; padding: 15px; border-radius: 5px; margin-bottom: 15px; text-align: left;}
+        #dados-cartao input { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
     </style>
 </head>
 <body>
     <div class="checkout-container">
         <h2>Efetuar Pagamento</h2>
-        <p>Olá, {{ usuario }}! O total da sua compra é:</p>
         <div class="valor-total">R$ {{ "%.2f"|format(total) }}</div>
         
         <form action="/pagamento" method="POST">
             <div class="metodo">
                 <p><b>Selecione a forma de pagamento:</b></p>
-                <label><input type="radio" name="forma" value="pix" checked> 📱 Pix (Aprovação Imediata)</label>
-                <label><input type="radio" name="forma" value="cartao"> 💳 Cartão de Crédito</label>
-                <label><input type="radio" name="forma" value="boleto"> 📄 Boleto Bancário</label>
+                <label><input type="radio" name="forma" value="pix" onclick="mostrarCartao(false)" checked> 📱 Pix</label>
+                <label><input type="radio" name="forma" value="boleto" onclick="mostrarCartao(false)"> 📄 Boleto Bancário</label>
+                <label><input type="radio" name="forma" value="cartao" onclick="mostrarCartao(true)"> 💳 Cartão de Crédito</label>
             </div>
+
+            <div id="dados-cartao">
+                <label>Número do Cartão:</label>
+                <input type="text" placeholder="0000 0000 0000 0000">
+                <label>Nome no Cartão:</label>
+                <input type="text" placeholder="JOAO M SILVA">
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;"><label>Validade:</label><input type="text" placeholder="MM/AA"></div>
+                    <div style="flex: 1;"><label>CVV:</label><input type="text" placeholder="123"></div>
+                </div>
+            </div>
+
             <button type="submit" class="btn-pagar">Confirmar e Finalizar</button>
         </form>
         <a href="/carrinho" class="voltar">Voltar ao Carrinho</a>
     </div>
+
+    <script>
+        function mostrarCartao(mostrar) {
+            document.getElementById('dados-cartao').style.display = mostrar ? 'block' : 'none';
+        }
+    </script>
 </body>
 </html>

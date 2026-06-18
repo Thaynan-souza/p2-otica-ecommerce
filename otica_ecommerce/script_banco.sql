@@ -49,3 +49,6 @@ CREATE TABLE pedido (
     data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id_pedido)
 );
+
+USE otica_bd;
+ALTER TABLE carrinho ADD COLUMN quantidade INT NOT NULL DEFAULT 1;
