@@ -37,17 +37,23 @@ No terminal do VS Code, digite:
 
 Bash
 sudo service mariadb start
+
 Se aparecer uma mensagem confirmando que o serviço iniciou, estamos prontos.
 
 2. Certifique-se de que as dependências estão instaladas
+
 Como o Codespaces pode recriar o ambiente, é bom garantir que as bibliotecas necessárias estão lá:
 
 Bash
+
 pip install fastapi uvicorn jinja2 mysql-connector-python bcrypt python-multipart
+
 3. Suba o servidor
-Agora, basta rodar o comando que já conhece:
+
+Agora, basta rodar o comando:
 
 Bash
+
 python -m uvicorn main:app --reload
 
 Para rodar este projeto na sua máquina local ou ambiente de desenvolvimento, siga as instruções abaixo:
