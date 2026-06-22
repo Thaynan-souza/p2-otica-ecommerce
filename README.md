@@ -49,7 +49,7 @@ pip install fastapi uvicorn jinja2 mysql-connector-python bcrypt python-multipar
 
 Agora, basta rodar o comando:
 
-python -m uvicorn main:app --reload
+cd otica_ecommerce python -m uvicorn main:app --reload
 
 Para rodar este projeto na sua máquina local ou ambiente de desenvolvimento, siga as instruções abaixo:
 
