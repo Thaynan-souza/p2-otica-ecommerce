@@ -35,7 +35,6 @@ O Codespaces não inicia o MySQL/MariaDB automaticamente a cada abertura.
 
 No terminal do VS Code, digite:
 
-Bash
 sudo service mariadb start
 
 Se aparecer uma mensagem confirmando que o serviço iniciou, estamos prontos.
@@ -44,29 +43,25 @@ Se aparecer uma mensagem confirmando que o serviço iniciou, estamos prontos.
 
 Como o Codespaces pode recriar o ambiente, é bom garantir que as bibliotecas necessárias estão lá:
 
-Bash
-
 pip install fastapi uvicorn jinja2 mysql-connector-python bcrypt python-multipart
 
 3. Suba o servidor
 
 Agora, basta rodar o comando:
 
-Bash
-
 python -m uvicorn main:app --reload
 
 Para rodar este projeto na sua máquina local ou ambiente de desenvolvimento, siga as instruções abaixo:
 
 ### Clonar o repositório
-```bash
+```
 git clone [https://github.com/SeuUsuario/p2-otica-ecommerce.git](https://github.com/SeuUsuario/p2-otica-ecommerce.git)
 cd p2-otica-ecommerce/otica_ecommerce
 
 2. Instalar as dependências do Python
 O projeto exige algumas bibliotecas externas para rodar o servidor, conectar ao banco e processar formulários. Execute o comando abaixo no seu terminal:
 
-Bash
+
 pip install fastapi uvicorn jinja2 mysql-connector-python bcrypt python-multipart
 
 3. Configurar o Banco de Dados
@@ -88,7 +83,7 @@ conexao = mysql.connector.connect(
 ▶️ Como Executar a Aplicação
 Com as dependências instaladas e o banco configurado, inicie o servidor web com o Uvicorn executando o comando abaixo no terminal:
 
-Bash
+
 python -m uvicorn main:app --reload
 
 O servidor estará rodando no endereço local: http://127.0.0.1:8000. Basta abrir este link no seu navegador para acessar a loja!
